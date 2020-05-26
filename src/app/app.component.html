@@ -1,0 +1,13 @@
+
+<h1>Who would you like to view?</h1>
+<tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.payload.doc.data().username}}</td>
+    <td *ngIf="user.payload.doc.data().currentGeeber === true?changeChannel(user.payload.doc.data().username): false;">
+      {{user.payload.doc.data().currentGeeber}}
+    </td>
+  </tr>
+</tbody>
+<h2 *ngIf="currentGeeber"> {{currentGeeber.username}}</h2>
+<app-twitch-video [channelSelected]="channelSelected"></app-twitch-video>
+<router-outlet></router-outlet>
