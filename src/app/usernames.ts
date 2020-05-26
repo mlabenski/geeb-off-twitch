@@ -1,19 +1,13 @@
-import { User } from './user';
+import { User } from './user.model';
 export const Usernames: User[] = [
     {
-      streamName:'RuptureXX',
-      matchID: 1,
-      currentGeeber: false
+      streamName:'RuptureXX'
     },
     {
-      streamName:'Bob Ross',
-      matchID:1,
-      currentGeeber: false
+      streamName:'Bob Ross'
     },
     {
-      streamName:'Cmgriffing',
-      matchID:1,
-      currentGeeber: false
+      streamName:'Cmgriffing'
     }
   ];
 

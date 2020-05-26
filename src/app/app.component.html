@@ -1,13 +1,43 @@
 
-<h1>Who would you like to view?</h1>
-<tbody>
-  <tr *ngFor="let user of users">
-    <td>{{user.payload.doc.data().username}}</td>
-    <td *ngIf="user.payload.doc.data().currentGeeber === true?changeChannel(user.payload.doc.data().username): false;">
-      {{user.payload.doc.data().currentGeeber}}
-    </td>
-  </tr>
-</tbody>
+<div class="container">
+  
+  <!-- Control the column width, and how they should appear on different devices -->
+  <div class="row">
+    <div class="col-3  hidden-sm">
+      <table class="table table-borderless">
+        <thead class="thead-dark">
+          <tr>
+            <td>Queued Players: </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.payload.doc.data().channelName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-6">
+      <app-countdown></app-countdown>
+      <h1 style="text-align: center;">until next game... </h1>
+      <img src="../assets/gravityBong.png" class="img-fluid center" alt="Responsive image">
+    </div>
+
+    <div class="col-3 hidden-sm">
+      <form class="formGroup" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-8">
+              <input style="color: black; font-weight: bold; font-size: large;" type="text" name='channelName' placeholder="Enter channel name..."  required class="formControl transparent-input" formControlName="channelName">
+            </div>
+            <div class="col-4">
+              <button class="btn" type="submit">Register</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
 <h2 *ngIf="currentGeeber"> {{currentGeeber.username}}</h2>
 <app-twitch-video [channelSelected]="channelSelected"></app-twitch-video>
 <router-outlet></router-outlet>

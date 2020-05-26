@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { User } from '../user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,16 +9,14 @@ export class UsersService {
   constructor(private firestore: AngularFirestore) {
    }
    getUsers() {
-    return this.firestore.collection("streamers").snapshotChanges();
+    return this.firestore.collection("Queue").snapshotChanges();
   }
   getCurrentUser() {
-    return this.firestore.collection("streamers", ref => ref.where('currentGeeber', '==', 'True'))
+    return this.firestore.collection("Queue", ref => ref.where('currentGeeber', '==', 'True'))
   }
 
-  updateCurrentStreamer(data) {
-    return
-    this.firestore.collection("streamers")
-    .doc(data.payload.doc.id)
-    .set({currentGeeber: false}, {merge: true});
-  }
+  createUser(user: User){
+    return this.firestore.collection('Queue').add(user);
+}
+
 }
